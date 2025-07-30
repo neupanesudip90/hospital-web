@@ -1,0 +1,5 @@
+.mySwiper .swiper-pagination {
+  position: relative;   /* take it out of absolute positioning */
+  margin-top: 10px;     /* push it down */
+  text-align: center;   /* center bullets */
+}
