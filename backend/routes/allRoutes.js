@@ -36,26 +36,10 @@ import {
 import { getNews } from "../controller/newsController.js";
 import {
   getTopHeadlines,
+  getTopHealthHeadlines
 } from "../controller/newsController.js";
 import upload from "../middlewares/cloudinaryUpload.js";
-
-import express from "express";
-import fetch from "node-fetch";
 const router = express.Router();
-
-
-
-router.get("/news", async (req, res) => {
-  try {
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?q=health&apiKey=${process.env.NEWS_API_KEY}`
-    );
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch news" });
-  }
-});
 
 
 // Register admin
@@ -122,6 +106,8 @@ router.get("/news", getNews);
 //top headlines route
 router.get("/news/top-headlines", getTopHeadlines);
 
+//top health headlines route
+router.get("/news/top-health-headlines", getTopHealthHeadlines);
 
 //route to get doctor by their department
 router.get(

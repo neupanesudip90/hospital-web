@@ -11,11 +11,9 @@ import { Pagination, Grid, Autoplay } from "swiper/modules";
 
 function News() {
   const [newsList, setNewsList] = React.useState([]);
-  const key = import.meta.env.VITE_NEWS_API_KEY;
-  console.log("news api key is", key);
   const newsFetch = async () => {
     try {
-      const response = await fetch("/api/news");
+      const response = await fetch("/api/news/top-health-headlines");
       const data = await response.json();
       setNewsList(data.articles);
     } catch (error) {
