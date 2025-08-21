@@ -6,7 +6,7 @@ import PrivateRoute from "./utils/privateRoutes/PrivateRoute";
 
 // Lazy imports
 const Home = lazy(() => import("./pages/Homepage/Home"));
-const OurService = lazy(() => import("./pages/ourService/ourService"));
+const OurService = lazy(() => import("./pages/OurService/ourService"));
 const AboutUs = lazy(() => import("./pages/AboutUs/AboutUs"));
 const Doctors = lazy(() => import("./pages/doctors/Doctors"));
 const News = lazy(() => import("./pages/News/News"));
