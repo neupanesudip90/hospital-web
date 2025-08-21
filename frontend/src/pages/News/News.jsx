@@ -92,7 +92,7 @@ export default function NewsList() {
           </div>
 
           {/* Pagination */}
-          <div className="mt-8 flex justify-center">
+          <div className="container mx-auto mt-8 flex justify-center ">
             {pageCount > 1 && (
               <ReactPaginate
                 previousLabel={"< Prev"}

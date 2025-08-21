@@ -12,8 +12,33 @@ import Slider from "../slider";
 import News from "../News";
 import Contact from "../Contact";
 import OurService from "../ourService";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Herosection() {
+  //animation for translate
+  const container = {
+    hidden: { opacity: 0, x: -100 },
+    show: { opacity: 1, x: 0 },
+   
+    transition: { duration: 3, delay: 0.5, ease: "easeInOut" },
+
+  };
+
+  //animation for fade in
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+    transition: { duration: 1 },
+   
+  };
+  const zoomIn = {
+    hidden: { scale: 0.5 },
+    show: { scale: 1 },
+    transition: { duration: 10 },
+   
+  };
+
   return (
     <>
       <div
@@ -22,9 +47,15 @@ function Herosection() {
           backgroundImage: `url(${
             window.innerWidth < 768 ? mobilePoster : poster
           })`,
+          loading: "lazy",
         }}
       >
-        <div className="container mx-auto flex flex-col justify-center items-start h-full p-5 lg:gap-3 gap-1">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2 }}
+          className="container mx-auto flex flex-col justify-center items-start h-full p-5 lg:gap-3 gap-1"
+        >
           <p className="text-white lg:text-2xl text-lg  font-bold">
             CARING FOR LIFE
           </p>
@@ -34,12 +65,23 @@ function Herosection() {
           <p className="text-blue-950 lg:text-5xl text-xl font-bold ">
             in Medical Excellence
           </p>
-          <button className="mt-5 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+          <Link
+            to="/ourservices"
+            className="mt-5 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+          >
             Our services
-          </button>
-        </div>
+          </Link>
+        </motion.div>
       </div>
-      <div className="hidden lg:block ">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }} // start hidden + moved down
+        whileInView={{ opacity: 1, y: 0 }} // animate when visible
+        transition={{ duration: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        // once:true = animate only first time
+        // amount:0.3 = trigger when 30% is visible
+        className="hidden lg:block "
+      >
         <div className="container mx-auto flex justify-between items-center gap-10 relative bottom-8 left-0 right-0">
           <div className=" p-8  bg-blue-800 rounded-lg shadow-lg flex justify-between items-center gap-5">
             <p className="text-center text-md text-white font-semibold ">
@@ -67,9 +109,15 @@ function Herosection() {
             <TbMessages className="text-white mx-auto text-3xl font-semibold" />
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* welcome section */}
-      <div className="container mx-auto  text-center mb-10 ">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto  text-center mb-10 "
+      >
         <p className="text-blue-500 font-bold text-md md:text-lg mt-10 ">
           WELCOME TO{" "}
           <span className="text-orange-400">LIFELINE MEDICARE CENTER</span>
@@ -90,14 +138,24 @@ function Herosection() {
           src={doctor}
           alt="Doctor Group"
           className=" mx-auto mt-5 h-[300px] w-200 object-cover"
+          loading="lazy"
         />
-      </div>
+      </motion.div>
       {/* our service section */}
-      <div>
+      <motion.div
+        variants={zoomIn}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        className="container mx-auto mb-10"
+      >
         <OurService />
-      </div>
+      </motion.div>
       {/* our facility section */}
-      <div className="container mb-5 ">
+
+      <motion.div variants={fadeIn}  initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}  className="container mb-5 ">
         <p className="text-blue-500 text-2xl mt-3 font-bold text-center">
           Always Caring
         </p>
@@ -135,12 +193,16 @@ function Herosection() {
             <p className="text-gray-700 font-semibold text-lg">Surgery</p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* book appointment section */}
-      <div
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
         className="mt-10 w-full lg:h-[550px] bg-cover bg-center relative py-5"
-        style={{ backgroundImage: `url(${doctorbg})` }}
+        style={{ backgroundImage: `url(${doctorbg})`, loading: "lazy" }}
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-white/50"></div>
@@ -159,7 +221,7 @@ function Herosection() {
             </p>
           </div>
           <div className="lg:w-1/2 w-full p-5 rounded-lg shadow-lg mt-5  bg-blue-800 text-white">
-            <form action="">
+            <form>
               <div className="grid grid-cols-2 float-center gap-3 text-white placeholder-white">
                 <input
                   type="text"
@@ -231,9 +293,9 @@ function Herosection() {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* our doctors section */}
-      <div className="container mt-20 ">
+      <motion.div variants={zoomIn} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} className="container mt-20 ">
         <p className="text-blue-500 text-2xl mt-3 font-bold text-center">
           TRUSTED CARE
         </p>
@@ -243,15 +305,14 @@ function Herosection() {
         <div className="mt-10">
           <Slider />
         </div>
-      </div>
+      </motion.div>
       {/* news section */}
-      <div className="container ">
+      <motion.div variants={zoomIn} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} className="container ">
         <News />
-      </div>
-      <div>
+      </motion.div>
+      <motion.div variants={fadeIn} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
         <Contact />
-      </div>
-     
+      </motion.div>
     </>
   );
 }

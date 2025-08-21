@@ -1,3 +1,4 @@
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,37 +9,19 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
+import { getAllDoctors } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 // import required modules
-import { Pagination, Autoplay } from "swiper/modules";
-import doctor1 from "../assets/doctor1.jpeg";
-import doctor2 from "../assets/doctor2.jpg";
-import doctor3 from "../assets/doctor3.jpeg";
-import doctor4 from "../assets/doctor4.jpg";
-import doctor5 from "../assets/doctor5.jpeg";
-import doctor6 from "../assets/doctor6.jpeg";
-import doctor7 from "../assets/doctor7.avif";
-import doctor8 from "../assets/doctor8.jpeg";
-
-const doctorList = [
-  {
-    name: "Doctor 1",
-    image: doctor1,
-    department: "Cardiology",
-  },
-  {
-    name: "Doctor 2",
-    image: doctor2,
-    department: "Neurology",
-  },
-  { name: "Doctor 3", image: doctor3, department: "Pediatrics" },
-  { name: "Doctor 4", image: doctor4, department: "Orthopedics" },
-  { name: "Doctor 5", image: doctor5, department: "Dermatology" },
-  { name: "Doctor 6", image: doctor6, department: "Gynecology" },
-  { name: "Doctor 7", image: doctor7, department: "Oncology" },
-  { name: "Doctor 8", image: doctor8, department: "General Medicine" },
-];
-
+import { Autoplay } from "swiper/modules";
+import { useEffect } from "react";
 export default function Slider() {
+  const dispatch = useDispatch();
+  const { doctors } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getAllDoctors());
+  }, [dispatch]);
   return (
     <Swiper
       slidesPerView={3}
@@ -54,23 +37,23 @@ export default function Slider() {
         clickable: true,
       }}
       modules={[Autoplay]}
-          className="mySwiper"
-          breakpoints={{
-            340: {
-              slidesPerView: 1, // 1 column on small screens
-            },
-            768: {
-              slidesPerView: 2, // 2 columns on medium screens
-            },
-            1024: {
-              slidesPerView: 3, // 3 columns on large screens
-            },
-          }}
+      className="mySwiper"
+      breakpoints={{
+        340: {
+          slidesPerView: 1, // 1 column on small screens
+        },
+        768: {
+          slidesPerView: 2, // 2 columns on medium screens
+        },
+        1024: {
+          slidesPerView: 3, // 3 columns on large screens
+        },
+      }}
     >
-      {doctorList.map((doctor, index) => (
+      {doctors.map((doctor, index) => (
         <SwiperSlide key={index} className="flex justify-center items-center  ">
           <img
-            src={doctor.image}
+            src={doctor.profilePicture}
             alt={doctor.name}
             className="h-70 w-90 rounded-t-md"
           />

@@ -1,8 +1,6 @@
 import React from "react";
-import Topbar from "../../components/topbar";
-import Navbar from "../../components/Navbar";
 import Herosection from "../../components/homepage/herosection";
-import Footer from "../../components/Footer";
+
 
 function Home() {
   return (

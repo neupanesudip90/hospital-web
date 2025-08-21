@@ -3,6 +3,7 @@ import logo from "../assets/clinicLogo.png"
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import {Link} from "react-router-dom"
 
 function Footer() {
   return (
@@ -20,29 +21,29 @@ function Footer() {
             <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
             <ul className="text-md font-semibold">
               <li className="mb-1">
-                <a href="#services" className="hover:text-gray-500">
+                <Link to="/ourservices" className="hover:text-gray-500">
                   Services
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#about" className="hover:text-gray-500">
+                <Link to="/aboutus" className="hover:text-gray-500">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#contact" className="hover:text-gray-500">
+                <Link to="/contact" className="hover:text-gray-500">
                   Contact
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#privacy" className="hover:text-gray-500">
+                <Link to="/bookappointment" className="hover:text-gray-500">
                   Book Appointment
-                </a>
+                </Link>
               </li>
               <li className="mb-1">
-                <a href="#terms" className="hover:text-gray-500">
+                <Link to="/doctors" className="hover:text-gray-500">
                   Our Doctors
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
