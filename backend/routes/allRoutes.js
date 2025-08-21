@@ -36,7 +36,6 @@ import {
 import { getNews } from "../controller/newsController.js";
 import {
   getTopHeadlines,
-  getNewsByCategory,
 } from "../controller/newsController.js";
 import upload from "../middlewares/cloudinaryUpload.js";
 
@@ -106,8 +105,6 @@ router.get("/news", getNews);
 //top headlines route
 router.get("/news/top-headlines", getTopHeadlines);
 
-//news by category route
-router.get("/news/category/:category", getNewsByCategory);
 
 //route to get doctor by their department
 router.get(

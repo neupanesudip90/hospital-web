@@ -32,17 +32,4 @@ export const getTopHeadlines = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch top headlines" });
   }
 }
-//get news by category
-export const getNewsByCategory = async (req, res) => {
-  const category = req.params.category;
-  try {
-    const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${key}`
-    );
-    const data = await response.json();
-    res.status(200).json(data);
-  } catch (error) {
-    console.error("Error fetching news by category:", error);
-    res.status(500).json({ error: "Failed to fetch news by category" });
-  }
-}
+

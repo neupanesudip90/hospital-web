@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/news"; 
-const topNewsURL = "http://localhost:5000/api/news/top-headlines"; // URL for top headlines
-// const categoryNewsURL = "http://localhost:5000/api/news/category"; // URL for news by category
+const API_URL = import.meta.env.VITE_BACKEND_URL + "/news";
+const topNewsURL = import.meta.env.VITE_BACKEND_URL + "/news/top-headlines"; // URL for top headlines
+
 
 // Thunk for fetching news
 export const fetchNews = createAsyncThunk(
