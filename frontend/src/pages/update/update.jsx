@@ -105,7 +105,6 @@ function UpdateDoctor() {
       <div className="lg:w-1/5 w-full  shadow-md mb-15">
         <Sidepanel />
       </div>
-      
 
       {/* Main Section */}
       <div className="lg:w-4/5 w-full">
@@ -121,8 +120,8 @@ function UpdateDoctor() {
           encType="multipart/form-data"
         >
           {/* Profile Picture */}
-          <div className="flex items-center space-x-4">
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 flex items-center justify-center bg-gray-100">
+          <div className="flex items-center lg:flex-row flex-col gap-5 space-x-4">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 flex  items-center justify-center bg-gray-100">
               {previewImage ? (
                 <img
                   src={previewImage}

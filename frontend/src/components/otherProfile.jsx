@@ -21,6 +21,10 @@ const UserProfile = () => {
     }
   }, [dispatch, id]);
 
+  
+    console.log("id is:", id);
+  
+
    const handleDelete = async () => {
      const confirm = window.confirm(
        "Are you sure you want to delete this user?"
@@ -51,6 +55,7 @@ const UserProfile = () => {
       <div className="w-full max-w-4xl flex items-start justify-between mb-4">
         <BackButton className="p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-md" />
         <div className="flex space-x-2">
+          
           <Link
             to={`/edit/${id}`}
             className="p-2 bg-green-600 text-white text-sm rounded-full hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-md"

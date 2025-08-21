@@ -4,7 +4,7 @@ import OtherProfile from '../../components/otherProfile';
 
 function UserProfile() {
   return (
-    <div className="w-full min-h-screen flex md:flex-row flex-col  bg-gray-50">
+    <div className="w-full min-h-screen flex lg:flex-row flex-col  bg-gray-50">
       {/* Sidebar */}
       <div className="lg:w-1/5 w-full  shadow-md mb-15">
         <Sidepanel />
