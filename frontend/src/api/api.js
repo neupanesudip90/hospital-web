@@ -1,10 +1,14 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api",
-    headers: {
-        "Content-Type": "application/json",
-    },
+  baseURL:
+    import.meta.env.VITE_BACKEND_URL ||
+    (import.meta.env.MODE === "development"
+      ? "http://localhost:5000/api"
+      : "https://hospital-web-xpo0.onrender.com/api"),
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 //interceptor is used to add token to every request

@@ -3,10 +3,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const key = process.env.NEWS_API_KEY;
+
 export const getNews = async (req, res) => {
   try {
     const page = req.query.page || 1; // Default to page 1 if not provided
     const pageSize = req.query.pageSize || 10; // Default to 10 items per page
+
+    console.log("api key is", key);
 
     const response = await fetch(
       `https://newsapi.org/v2/top-headlines?country=us&apiKey=${key}&page=${page}&pageSize=${pageSize}`
