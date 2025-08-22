@@ -27,9 +27,6 @@ export default function NewsList() {
     dispatch(fetchTopHeadlines());
   }, [dispatch]);
 
-  //   useEffect(() => {
-  //     dispatch(fetchNewsByCategory("health"));
-  //   }, [dispatch]);
 
   if (loading)
     return <p className="text-center text-lg font-semibold">Loading...</p>;
@@ -92,7 +89,7 @@ export default function NewsList() {
           </div>
 
           {/* Pagination */}
-          <div className="container mx-auto mt-8 flex justify-center ">
+          <div className="container mx-auto py-5 flex justify-center ">
             {pageCount > 1 && (
               <ReactPaginate
                 previousLabel={"< Prev"}

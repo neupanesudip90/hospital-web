@@ -35,3 +35,23 @@ export const getTopHeadlines = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch top headlines" });
   }
 }
+
+import fetch from "node-fetch";
+
+export const getTopHealthHeadlines = async (req, res) => {
+  try {
+    const response = await fetch(
+      `https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=${process.env.NEWS_API_KEY}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`News API Error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    res.status(200).json(data); // send to frontend
+  } catch (error) {
+    console.error("Error fetching top health headlines:", error.message);
+    res.status(500).json({ error: "Failed to fetch top health headlines" });
+  }
+};
