@@ -54,7 +54,7 @@ function Dropdown({ onClose }) {
   ];
 
   return (
-    <div className="absolute lg:-left-5 right-2 top-10 mt-2 bg-blue-900 rounded-b-md shadow-lg z-50">
+    <div className="absolute lg:-left-5  top-10 mt-2 bg-blue-900 rounded-b-md shadow-lg z-50">
       <ul className="py-1 ">
         {dropdownItems.map((item) => (
           <li
