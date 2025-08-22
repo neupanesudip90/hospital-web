@@ -1,55 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "./News.css";
-
-// Import Swiper styles
+import { Pagination, Grid, Autoplay } from "swiper/modules";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTopHealthHeadlines } from "../redux/newsSlice";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
-import { Pagination, Grid, Autoplay } from "swiper/modules";
+import "./News.css";
 
 function News() {
-  const [newsList, setNewsList] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-
-  const newsFetch = async () => {
-    try {
-      const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=01c9c5da552d43a29f05a9797c9e6352`
-      );
-      const data = await response.json();
-
-      if (data?.articles) {
-        setNewsList(data.articles);
-      } else {
-        console.warn("No articles received:", data);
-        setNewsList([]);
-      }
-    } catch (error) {
-      console.error("Error fetching news:", error);
-      setNewsList([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const { healthHeadlines, loading } = useSelector((state) => state.news);
 
   useEffect(() => {
-    newsFetch();
-  }, []);
+    dispatch(fetchTopHealthHeadlines());
+  }, [dispatch]);
 
   let newsContent;
-  if (loading) {
-    newsContent = <p>Loading news...</p>;
-  } else if (newsList.length > 0) {
+
+  if (loading) newsContent = <p>Loading news...</p>;
+  else if (healthHeadlines.length > 0) {
     newsContent = (
       <Swiper
-        key={newsList.length}
+        key={healthHeadlines.length}
         slidesPerView={2}
         grid={{ rows: 2, fill: "row" }}
         spaceBetween={40}
         pagination={{ clickable: true }}
-        className="mySwiper"
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         modules={[Grid, Pagination, Autoplay]}
         breakpoints={{
@@ -58,7 +35,7 @@ function News() {
           1024: { slidesPerView: 2, grid: { rows: 2, fill: "row" } },
         }}
       >
-        {newsList.map((news) => (
+        {healthHeadlines.map((news) => (
           <SwiperSlide key={news.url || news.title}>
             <div className="p-6 bg-gray-100 rounded-lg shadow-md lg:flex flex-cols justify-between items-start">
               <img
@@ -93,9 +70,7 @@ function News() {
         ))}
       </Swiper>
     );
-  } else {
-    newsContent = <p>No news available at the moment.</p>;
-  }
+  } else newsContent = <p>No news available.</p>;
 
   return (
     <div className="mt-10 container">

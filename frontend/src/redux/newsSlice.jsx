@@ -3,9 +3,7 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL + "/news";
 const topNewsURL = import.meta.env.VITE_BACKEND_URL + "/news/top-headlines"; // URL for top headlines
-const topHealthNewsURL =
-  import.meta.env.VITE_BACKEND_URL + "/news/top-health-headlines"; // URL for top health headlines
-
+const backendURL = import.meta.env.VITE_BACKEND_URL; // Base URL for backend
 // Thunk for fetching news
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
@@ -24,11 +22,10 @@ export const fetchTopHeadlines = createAsyncThunk(
   }
 );
 
-//thunks for fetching top health headlines
 export const fetchTopHealthHeadlines = createAsyncThunk(
   "news/fetchTopHealthHeadlines",
   async () => {
-    const res = await axios.get(`${topHealthNewsURL}`);
+    const res = await axios.get(`${backendURL}/news/top-health-headlines`);
     return res.data;
   }
 );
@@ -39,7 +36,7 @@ const newsSlice = createSlice({
     articles: [], // Main paginated news
     totalResults: 0,
     headlines: [], // Top headlines
-    categoryNews: [], // Category-specific news
+    healthHeadlines: [], // Top health headlines
     loading: false,
     error: null,
     currentPage: 1,
@@ -76,6 +73,19 @@ const newsSlice = createSlice({
         state.headlines = action.payload.articles; // Store in headlines, NOT articles
       })
       .addCase(fetchTopHeadlines.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      .addCase(fetchTopHealthHeadlines.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTopHealthHeadlines.fulfilled, (state, action) => {
+        state.loading = false;
+        state.healthHeadlines = action.payload.articles; // store articles
+      })
+      .addCase(fetchTopHealthHeadlines.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
