@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Grid, Autoplay } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTopHealthHeadlines } from "../redux/newsSlice";
+import { fetchTopHeadlines } from "../redux/newsSlice";
 import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
@@ -10,19 +10,20 @@ import "./News.css";
 
 function News() {
   const dispatch = useDispatch();
-  const { healthHeadlines, loading } = useSelector((state) => state.news);
+  const { articles,   loading,  } =
+    useSelector((state) => state.news);
 
   useEffect(() => {
-    dispatch(fetchTopHealthHeadlines());
+    dispatch(fetchTopHeadlines());
   }, [dispatch]);
 
   let newsContent;
 
   if (loading) newsContent = <p>Loading news...</p>;
-  else if (healthHeadlines.length > 0) {
+  else if (articles.length > 0) {
     newsContent = (
       <Swiper
-        key={healthHeadlines.length}
+        key={articles.length}
         slidesPerView={2}
         grid={{ rows: 2, fill: "row" }}
         spaceBetween={40}

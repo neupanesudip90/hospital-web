@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/dbConnect.js';
 import allRoutes from './routes/allRoutes.js';
 
+
 dotenv.config();
 let app = express();
 const port = process.env.PORT || 3000;
