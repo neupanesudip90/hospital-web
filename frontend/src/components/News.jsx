@@ -36,7 +36,7 @@ function News() {
           1024: { slidesPerView: 2, grid: { rows: 2, fill: "row" } },
         }}
       >
-        {healthHeadlines.map((news) => (
+        {articles.map((news) => (
           <SwiperSlide key={news.url || news.title}>
             <div className="p-6 bg-gray-100 rounded-lg shadow-md lg:flex flex-cols justify-between items-start">
               <img

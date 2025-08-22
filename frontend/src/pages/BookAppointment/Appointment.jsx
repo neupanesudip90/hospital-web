@@ -37,17 +37,23 @@ function Appointment() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Submit appointment
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(bookAppointment(formData));
-      if (!error) {
-        // Handle successful booking (e.g., show a success message or redirect)
+      const resultAction = await dispatch(bookAppointment(formData));
+
+      // Check if fulfilled
+      if (bookAppointment.fulfilled.match(resultAction)) {
         alert("Appointment booked successfully!");
+      } else {
+        // If rejected, show error
+        console.error(
+          "Booking failed:",
+          resultAction.payload || resultAction.error
+        );
       }
-    } catch (error) {
-      console.error("Error booking appointment:", error);
+    } catch (err) {
+      console.error("Error booking appointment:", err);
     }
   };
 

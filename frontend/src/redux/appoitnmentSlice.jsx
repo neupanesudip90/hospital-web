@@ -54,7 +54,7 @@ export const doctorByDepartment = createAsyncThunk(
   "appointments/doctorByDepartment",
   async (department, { rejectWithValue }) => {
     try {
-      const response = await API.get(`/doctor/department/${department}`);
+      const response = await API.get(`/doctors/department/${department}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -102,19 +102,23 @@ export const getLatestConfirmedAppointments = createAsyncThunk(
       const response = await API.get("/appointments/latest-confirmed");
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || { message: "Failed to fetch latest confirmed appointments" });
+      return rejectWithValue(
+        error.response?.data || {
+          message: "Failed to fetch latest confirmed appointments",
+        }
+      );
     }
   }
 );
-
-
 
 const appointmentSlice = createSlice({
   name: "appointments",
   initialState: {
     appointments: [],
     selectedAppointment: null,
-    loading: false,
+    doctor: [],
+    loading: false, // for booking
+    doctorLoading: false, // for fetching doctors
     error: null,
   },
   reducers: {},
@@ -192,17 +196,17 @@ const appointmentSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(doctorByDepartment.pending, (state) => {
-        state.loading = true;
+        state.doctorLoading = true;
       })
       .addCase(doctorByDepartment.fulfilled, (state, action) => {
-        state.loading = false;
+        state.doctorLoading = false;
         state.doctor = action.payload;
       })
       .addCase(doctorByDepartment.rejected, (state, action) => {
-        state.loading = false;
+        state.doctorLoading = false;
         state.error = action.error.message;
       })
-    
+
       //for search appointment
       .addCase(searchAppointment.pending, (state) => {
         state.loading = true;
@@ -216,34 +220,31 @@ const appointmentSlice = createSlice({
         state.error = action.error.message;
       })
 
-    // for filter appointment
-.addCase(filterAppointment.pending, (state) => {
-  state.loading = true;
-})
-.addCase(filterAppointment.fulfilled, (state, action) => {
-  state.loading = false;
-  state.appointments = action.payload; 
-})
-.addCase(filterAppointment.rejected, (state, action) => {
-  state.loading = false;
-  state.error = action.error.message;
-})
-    
-.addCase(getLatestConfirmedAppointments.pending, (state) => {
-  state.loading = true;
-})
-.addCase(getLatestConfirmedAppointments.fulfilled, (state, action) => {
-  state.loading = false;
-  state.latest = action.payload; // use "latest" instead
-})
+      // for filter appointment
+      .addCase(filterAppointment.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(filterAppointment.fulfilled, (state, action) => {
+        state.loading = false;
+        state.appointments = action.payload;
+      })
+      .addCase(filterAppointment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
 
-.addCase(getLatestConfirmedAppointments.rejected, (state, action) => {
-  state.loading = false;
-  state.error = action.error.message;
-})
+      .addCase(getLatestConfirmedAppointments.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getLatestConfirmedAppointments.fulfilled, (state, action) => {
+        state.loading = false;
+        state.latest = action.payload; // use "latest" instead
+      })
 
-
-
+      .addCase(getLatestConfirmedAppointments.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
