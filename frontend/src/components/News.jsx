@@ -12,13 +12,11 @@ function News() {
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Use backend URL from env variable
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "";
 
   const newsFetch = async () => {
     try {
       const response = await fetch(
-        `${backendUrl}/api/news/top-health-headlines`
+        `https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=01c9c5da552d43a29f05a9797c9e6352`
       );
       const data = await response.json();
 
