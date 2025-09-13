@@ -13,9 +13,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, error } = useSelector((state) => state.auth);
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -71,6 +69,14 @@ function Login() {
           <p className="text-center text-gray-500 mb-6 text-sm">
             Enter your credentials to login to your account
           </p>
+          <p className="text-center text-gray-500  text-xs">
+            (Use email: neupanesudip909@gmail.com and password: qwerty for admin
+            login)
+          </p>
+          <p className="text-center mb-5 text-gray-500 text-xs">
+            (Use email: johnsharma@gmail.com and password: qwerty for doctor
+            login)
+          </p>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form className="space-y-5" onSubmit={handleSubmit}>
             {/* Global error */}
@@ -118,7 +124,9 @@ function Login() {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
               {getFieldError("password") && (
-                <p className="text-red-500 text-sm">{getFieldError("password")}</p>
+                <p className="text-red-500 text-sm">
+                  {getFieldError("password")}
+                </p>
               )}
             </div>
             <div className="flex justify-between items-center text-sm">
