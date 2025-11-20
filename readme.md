@@ -5,7 +5,7 @@
 
 A comprehensive, full-stack Hospital Management System built with the MERN stack (MongoDB, Express.js, React.js, Node.js). This modern web application streamlines hospital operations including patient registration, doctor management, appointment scheduling, and medical record handling with a secure, role-based authentication system.
 
-- Live: [hospital-web](hospital-web-pi.vercel.app)
+- Live: [hospital-web](https://hospital-web-pi.vercel.app)
 
 </div>
 
@@ -253,6 +253,7 @@ For questions, issues, or suggestions:
 Made with ❤️ by [Sudip Neupane](https://github.com/neupanesudip90)
 
 </div>
+
 
 
 
