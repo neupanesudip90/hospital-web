@@ -5,7 +5,7 @@
 
 A comprehensive, full-stack Hospital Management System built with the MERN stack (MongoDB, Express.js, React.js, Node.js). This modern web application streamlines hospital operations including patient registration, doctor management, appointment scheduling, and medical record handling with a secure, role-based authentication system.
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Installation](#-installation) • [API Documentation](#-api-documentation) • [Contributing](#-contributing)
+[Live](#-https://hospital-web-pi.vercel.app/) 
 
 </div>
 
@@ -69,38 +69,25 @@ The Hospital Management System is a production-ready web application designed to
 
 ## 🚀 Tech Stack
 
-### Frontend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **React** | 19.1.0 | Core UI library |
-| **Redux Toolkit** | 2.8.2 | State management |
-| **React Router DOM** | 7.7.1 | Client-side routing |
-| **Vite** | 7.0.4 | Build tool and dev server |
-| **Material-UI (MUI)** | 7.2.0 | Component library |
-| **Tailwind CSS** | 4.1.11 | Utility-first CSS framework |
-| **Axios** | 1.11.0 | HTTP client |
-| **Framer Motion** | 12.23.12 | Animation library |
-| **React Toastify** | 11.0.5 | Toast notifications |
-| **Recharts** | 3.1.0 | Data visualization |
-| **Swiper** | 11.2.10 | Touch slider component |
-| **React Icons** | 5.5.0 | Icon library |
-| **React Paginate** | 8.3.0 | Pagination component |
+##Frontend
+- HTML & css
+- React
+- Redux Toolkit
+- Vite
+- Material-UI (MUI)
+- Tailwind CSS
 
-### Backend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **Node.js** | >= 16.0.0 | Runtime environment |
-| **Express.js** | 5.1.0 | Web application framework |
-| **MongoDB** | 6.17.0 | NoSQL database |
-| **Mongoose** | 8.16.4 | MongoDB ODM |
-| **JWT** | 9.0.2 | Authentication tokens |
-| **bcryptjs** | 3.0.2 | Password hashing |
-| **Cloudinary** | 1.29.0 | Cloud image storage |
-| **Multer** | 2.0.2 | File upload middleware |
-| **Express Validator** | 7.2.1 | Request validation |
-| **CORS** | 2.8.5 | Cross-origin support |
-| **dotenv** | 17.2.0 | Environment variables |
-| **Nodemon** | 3.1.10 | Development auto-reload |
+##Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- Cloudinary
+- Multer
+- Express Validator
+
 
 ### Development Tools
 - **ESLint**: Code linting and style enforcement
@@ -266,6 +253,7 @@ For questions, issues, or suggestions:
 Made with ❤️ by [Sudip Neupane](https://github.com/neupanesudip90)
 
 </div>
+
 
 
 
